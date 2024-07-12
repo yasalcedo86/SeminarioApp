@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="content-bg">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <swiper-container>
+      <swiper-slide *ngFor="let item of slides">
+        <ion-icon name="airplane-outline"></ion-icon>
+        <h2 class="letter-black">{{item.title}}</h2>
+        <img src="{{item.image}}" alt="">
+        <p class="letter-black">{{item.description}}</p>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</ion-content>

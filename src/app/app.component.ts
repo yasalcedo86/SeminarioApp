@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { register } from 'swiper/element/bundle';
+import { MenuController } from '@ionic/angular';
+
 register();
 @Component({
   selector: 'app-root',
@@ -7,5 +9,17 @@ register();
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  title: string = 'Inicio';
+
+  constructor(private menu: MenuController) {}
+  
+  closeMenuAndSetTitle(title: string) {
+    this.title = title;
+    this.menu.close();
+  }
+  
+  private closeMenu() {
+    this.menu.close();
+  }
+
 }

@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'sliders',
+    loadChildren: () => import('./sliders/sliders.module').then( m => m.SlidersPageModule)
+  },
 ];
 
 @NgModule({
