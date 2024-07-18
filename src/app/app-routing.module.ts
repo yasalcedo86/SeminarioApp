@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./sliders/sliders.module').then( m => m.SlidersPageModule),
     canActivate: [introGuard]
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({
