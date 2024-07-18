@@ -4,8 +4,58 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <figure>
-    <img src="assets/img/profile.png" alt="">
-  </figure>
+<ion-content class="ion-padding">
+  <ion-grid class="full-height ion-align-items-center ion-justify-content-center">
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="4">
+        <figure >
+          <img src="assets/img/profile.png" alt="Profile Picture" />
+        </figure>
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+          <ion-item class="ion-margin-bottom">
+            <ion-input
+              type="text"
+              label="Email"
+              placeholder="Email"
+              formControlName="email"
+              labelPlacement="floating"
+            ></ion-input>
+          </ion-item>
+          <ion-note
+            class="ion-padding"
+            *ngIf="loginForm.get('email')?.hasError('required') && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)"
+            color="danger">
+            {{ validation_msg.email.required }}
+          </ion-note>
+          <ion-note
+            class="ion-padding"
+            *ngIf="loginForm.get('email')?.hasError('pattern') && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)"
+            color="danger">
+            {{ validation_msg.email.pattern }}
+          </ion-note>
+          <ion-item class="ion-margin-bottom">
+            <ion-input
+              type="password"
+              label="Contraseña"
+              placeholder="Contraseña"
+              formControlName="password"
+              labelPlacement="floating"
+            ></ion-input>
+          </ion-item>
+          <ion-note
+            class="ion-padding"
+            *ngIf="loginForm.get('password')?.hasError('required') && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)"
+            color="danger">
+            {{ validation_msg.password.required }}
+          </ion-note>
+          <ion-button 
+            type="submit"
+            expand="block"
+            [disabled]="!loginForm.valid">
+            Login
+          </ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -25,7 +25,7 @@ export class AppComponent {
     await this.storage.create();
     this.router.events
       .pipe(
-        filter((event: Event) => event instanceof NavigationEnd) // Filtra solo NavigationEnd
+        filter((event: Event) => event instanceof NavigationEnd) 
       )
       .subscribe((event: Event) => {
         if (event instanceof NavigationEnd) {
@@ -35,7 +35,6 @@ export class AppComponent {
   }
 
   updateMenuVisibility(url: string) {
-    // Cambia '/login' por la ruta de tu página de login
     this.showMenu = url !== '/login';
   }
 
