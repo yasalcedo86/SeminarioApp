@@ -11,7 +11,7 @@ export class AuthService {
       if( credentials.email == "admin@admin.com" && credentials.password == "admin" ){
         accept("Entro");
       } else {
-        reject("Entro");
+        reject("Error al ingresar");
       }
     });
   }

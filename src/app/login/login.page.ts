@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +22,15 @@ export class LoginPage implements OnInit {
       required: "Contraseña requerida."
     }
   }
+  errorMsg: string = "";
+  isAlertOpen = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private navController: NavController,
+    private alertController: AlertController,
+    private storage: Storage,
   )
   {
     this.loginForm = this.formBuilder.group({
@@ -48,8 +55,22 @@ export class LoginPage implements OnInit {
 
   loginUser(data: any) {
     this.authService.loginUser(data).then( res => {
+      this.storage.set("isUserLoggedIn", true);
       this.navController.navigateForward("/home");
+    }).catch( err => {
+      this.errorMsg = err;
+      this.presentAlert(err);
     })
+  }
+
+  async presentAlert(error: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: error,
+      buttons: ['Aceptar'],
+    });
+
+    await alert.present();
   }
   
 
