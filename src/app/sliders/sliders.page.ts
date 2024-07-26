@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MusicService } from '../services/music.service';
 
 @Component({
   selector: 'app-sliders',
@@ -7,27 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SlidersPage implements OnInit {
   lorem = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis dicta obcaecati animi omnis velit laborum unde repellat, ipsa impedit possimus quae, tempore ratione placeat est. Dolore sunt perspiciatis officiis consequuntur?";
-  slides = [
-    {
-      title: "Naturaleza 1",
-      image: "https://picsum.photos/1280/720?random=1",
-      description: this.lorem
-    },
-    {
-      title: "Naturaleza 2",
-      image: "https://picsum.photos/1280/720?random=2",
-      description: this.lorem
-    },
-    {
-      title: "Naturaleza 3",
-      image: "https://picsum.photos/1280/720?random=3",
-      description: this.lorem
-    }
-  ];
+  slides: any;
 
-  constructor() { }
+  constructor( private musicService: MusicService ) { }
 
   ngOnInit() {
+    this.musicService.getArtist().then(data => {
+      this.slides = data;
+      console.log(data);
+    });
   }
 
 }
