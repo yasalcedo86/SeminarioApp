@@ -16,6 +16,7 @@ export class loginGuard implements CanActivate {
     if (isUserLoggedIn) {
       return true;
     } else {
+      console.log("entro aki")
       this.router.navigateByUrl('/login');
       return false;
     }

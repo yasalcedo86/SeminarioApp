@@ -63,6 +63,10 @@ export class LoginPage implements OnInit {
     })
   }
 
+  register(){
+    this.navController.navigateForward("/register");
+  }
+
   async presentAlert(error: string) {
     const alert = await this.alertController.create({
       header: 'Error',

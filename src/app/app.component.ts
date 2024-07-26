@@ -35,12 +35,18 @@ export class AppComponent {
   }
 
   updateMenuVisibility(url: string) {
-    this.showMenu = url !== '/login';
+    this.showMenu = url !== '/login' && url !== '/register';
   }
+  
 
   closeMenuAndSetTitle(title: string) {
     this.title = title;
     this.menu.close();
+  }
+
+  logOut() {
+    const intro = this.storage.set("isUserLoggedIn", false);
+    this.router.navigateByUrl("/login");
   }
   
   private closeMenu() {
