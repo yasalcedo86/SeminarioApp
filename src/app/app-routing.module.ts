@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'song-modal',
+    loadChildren: () => import('./song-modal/song-modal.module').then( m => m.SongModalPageModule)
+  },
 ];
 
 @NgModule({

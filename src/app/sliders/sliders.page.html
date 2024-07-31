@@ -18,7 +18,7 @@
       <swiper-slide *ngFor="let item of slides">
         <ion-icon name="musical-notes-outline"></ion-icon>
         <h2 class="letter-black">{{item.name}}</h2>
-        <img src="{{item.image}}" alt="{{item.name}}">
+        <img src="{{item.image}}" alt="{{item.name}}" (click)="showSong(item)">
         <p class="letter-black">Géneros: {{item.genres.join(', ')}}</p>
         <p class="letter-black">Seguidores: {{item.followers}}</p>
         <p class="letter-black">Popularidad: {{item.popularity}}%</p>
@@ -26,3 +26,40 @@
     </swiper-container>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="3" class="ion-text-start">
+          <ion-icon name="play-skip-back-outline" ></ion-icon>
+        </ion-col>
+        <ion-col size="6" class="ion-text-center">
+          <ion-icon name="play" (click)="play()" *ngIf="!song.playing"></ion-icon>
+          <ion-icon name="pause" (click)="pause()" *ngIf="song.playing"></ion-icon>
+        </ion-col>
+        <ion-col size="3" class="ion-text-end">
+          <ion-icon name="play-skip-forward-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-progress-bar [value]="progress"></ion-progress-bar>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-text-start">
+          <ion-text></ion-text>
+        </ion-col>
+        <ion-col size="4" class="ion-text-center">
+          <ion-text>{{ song.name || "Aun no has seleccionado cancion" }}</ion-text>
+        </ion-col>
+        <ion-col size="4" class="ion-text-end">
+          <ion-text>{{time}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

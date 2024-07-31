@@ -20,4 +20,10 @@ export class MusicService {
       response => response.json()
     )
   }
+
+  getArtistTracks(artist_id: number){
+    return fetch(`${this.url}/tracks/artist/${artist_id}`).then(
+      response => response.json()
+    )
+  }
 }
